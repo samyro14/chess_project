@@ -7,7 +7,7 @@ TARGET= sdl_game.exe
 git:
 	git add .
 	git commit -m "Updated files"
-	git push origin main
+	git push
 pull:
 	git pull origin main
 status:

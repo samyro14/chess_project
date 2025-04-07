@@ -1,1 +1,1 @@
-# chess_project + sdl for ui
+# chess_project + sdl2 for ui
