@@ -74,10 +74,10 @@ void render_board(GameState* state) {
             SDL_RenderFillRect(state->renderer, &rect);
             
             // Desenare selecție
-            if (i == state->selected_y && j == state->selected_x) {
+           /* if (i == state->selected_y && j == state->selected_x) {
                 SDL_SetRenderDrawColor(state->renderer, 255, 255, 0, 100);
                 SDL_RenderFillRect(state->renderer, &rect);
-            }
+            }*/
             
             // Desenare piese (text simplu)
             if (state->board[i][j].type != EMPTY) {

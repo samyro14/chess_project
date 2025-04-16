@@ -1,0 +1,38 @@
+# Chess Project Documentation
+
+## Project Overview
+This project is a chess game implementation designed for educational purposes. It allows two players to play a standard game of chess with all the rules of the game enforced. The project is developed as part of the coursework for the Technical University of Timișoara (UPT), AC-CTI program, during the second semester.
+
+## Features
+- Full implementation of chess rules (e.g., piece movement, check, checkmate, stalemate).
+- Graphical User Interface (GUI) for an interactive playing experience.
+- Move validation to ensure legal gameplay.
+- Support for saving and loading games.
+- Optional AI opponent (if implemented).
+
+## Project Structure
+- **Source Code**: Contains the implementation of the chess game logic and GUI.
+- **Assets**: Includes images and resources for the chessboard and pieces.
+- **Documentation**: This file and other related documents explaining the project.
+
+## Requirements
+- Programming Language: [Specify the language, e.g., Python, C++, etc.]
+- Libraries/Frameworks: [List any dependencies, e.g., Pygame, Qt, etc.]
+- Development Environment: [Specify IDE or tools used, e.g., Visual Studio, PyCharm, etc.]
+
+## How to Run
+1. Clone the repository to your local machine.
+2. Install the required dependencies.
+3. Run the main executable or script to start the game.
+
+## Future Improvements
+- Add online multiplayer functionality.
+- Implement advanced AI for single-player mode.
+- Enhance the GUI with animations and sound effects.
+
+## Contributors
+- [Your Name]
+- [Other Team Members]
+
+## License
+This project is licensed under the [Specify License, e.g., MIT License]. See the LICENSE file for details.
