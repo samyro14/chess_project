@@ -1,6 +1,41 @@
 1.fac ui-sdl2 - done
-2.implementing the board
-3.moves
-    3.1.
-    3.2.w
+2.implementing the board - done
+    2.1. board size=8x8 - done
+    2.2. board color=white and black - done
+    2.3. board pieces=white and black - done
+    2.4. board pieces position - done
+3.moves - 22.04.2025
+    3.1.pawn=> 
+        daca este in pozitia initiala poate sa mearga cu doua in fata
+        in general merge cu o pozitie in fata
+        daca este o piesa a adversarului pe i + 1, j +- 1 atunci poate sa ii ia piesa
+        toate aceste mutari se fac avand conditia ca nu va lasa regelein sah
+        mutarea se face in functie de culoarea piesei, alba sau neagra
+    3.2. bishop=nebun
+        se poate muta pe diagonala, in fata sau in spate, dar nu poate sari peste alte piese
+    3.3. knight=cavaler
+        se poate muta in forma de L, adica 2 pe o directie si 1 pe alta, dar nu poate sari peste alte piese
+    3.4. rook=turn
+        se poate muta pe orizontala sau verticala, dar nu poate sari peste alte piese
+    3.5. queen=regina
+        se poate muta pe orizontala, verticala sau diagonala, dar nu poate sari peste alte piese
+    3.6. king=rege
+        se poate muta pe orizontala, verticala sau diagonala, dar nu poate sari peste alte piese
+        nu poate fi in sah, adica sa fie atacat de o piesa adversa
+4.implementing the game
+    4.1. game loop
+        4.1.1. check if the game is over
+        4.1.2. check if the player is in check
+        4.1.3. check if the player is in checkmate
+        4.1.4. check if the player is in stalemate
+        4.1.5. check if the player is in draw
+    4.2. check if the player has won
+    4.3. check if the player has lost
+    4.4. check if the player has drawn
+    4.5. check if the player has resigned
+    4.6. check if the player has timed out
+    4.7. check if the player has disconnected
+    4.8. check if the player has left the game
+    4.9. check if the player has left the server
+
 4.socket programming
