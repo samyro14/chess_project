@@ -38,7 +38,7 @@ typedef struct {
 
 void init_game(GameState*);
 void render_board(GameState*);
-
+void reder_piece(GameState*, const char*, int, int);
 
 
 #endif /* board_h */

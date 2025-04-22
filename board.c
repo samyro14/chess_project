@@ -1,10 +1,11 @@
 #include "board.h"
 #include "moves.h"
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 #define WINDOW_WIDTH 900
 #define WINDOW_HEIGHT 600
 #define BOARD_SIZE 8
@@ -55,11 +56,37 @@ void init_game(GameState* state) {
     state->selected_y = -1;
 }
 
+//Randare piesă
+void render_piece(GameState* state, const char* piece, int x, int y) {
+    SDL_Surface* surface = IMG_Load(piece);
+    if (!surface) {
+        printf("Failed to load image: %s\n", IMG_GetError());
+        return;
+    }
+    
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(state->renderer, surface);
+    if (!texture) {
+        printf("Failed to create texture: %s\n", SDL_GetError());
+        SDL_FreeSurface(surface);
+        return;
+    }
+    
+    SDL_Rect dest_rect = {x * SQUARE_SIZE + 10, y * SQUARE_SIZE + 10, 
+                        SQUARE_SIZE - 20, SQUARE_SIZE - 20};
+    SDL_RenderCopy(state->renderer, texture, NULL, &dest_rect);
+    
+    SDL_DestroyTexture(texture);
+    SDL_FreeSurface(surface);
+}
+
 // Randare tablă
 void render_board(GameState* state) {
     SDL_SetRenderDrawColor(state->renderer, 255, 255, 255, 255);
     SDL_RenderClear(state->renderer);
-    
+    if (IMG_Init(IMG_INIT_PNG) == 0) {
+        printf("SDL_image initialization failed: %s\n", IMG_GetError());
+        return ;
+    }
     for (int i = 0; i < BOARD_SIZE; i++) {
         for (int j = 0; j < BOARD_SIZE; j++) {
             SDL_Rect rect = {j * SQUARE_SIZE, i * SQUARE_SIZE, 
@@ -67,39 +94,44 @@ void render_board(GameState* state) {
             
             // Desenare pătrate
             if ((i + j) % 2 == 0) {
-                SDL_SetRenderDrawColor(state->renderer, 240, 217, 181, 255);
+                SDL_SetRenderDrawColor(state->renderer, 235,236,208,255);//alb
             } else {
-                SDL_SetRenderDrawColor(state->renderer, 1, 136, 99, 255);
+                SDL_SetRenderDrawColor(state->renderer, 115,149,82,255); //negru
             }
             SDL_RenderFillRect(state->renderer, &rect);
             
             // Desenare selecție
-           /* if (i == state->selected_y && j == state->selected_x) {
-                SDL_SetRenderDrawColor(state->renderer, 255, 255, 0, 100);
+            if (i == state->selected_y && j == state->selected_x) {
+                SDL_SetRenderDrawColor(state->renderer, 101, 101, 101, 100);
                 SDL_RenderFillRect(state->renderer, &rect);
-            }*/
-            
+            }
+          
             // Desenare piese (text simplu)
             if (state->board[i][j].type != EMPTY) {
-                char piece_char;
-                switch (state->board[i][j].type) {
-                    case PAWN: piece_char = 'P'; break;
-                    case KNIGHT: piece_char = 'N'; break;
-                    case BISHOP: piece_char = 'B'; break;
-                    case ROOK: piece_char = 'R'; break;
-                    case QUEEN: piece_char = 'Q'; break;
-                    case KING: piece_char = 'K'; break;
-                    default: piece_char = ' ';
+                char piece[100] = ""; // Initializează un buffer pentru piesă
+                if(state->board[i][j].color == WHITE){
+                    switch (state->board[i][j].type) {
+                        case PAWN:strncpy(piece, "assets/img/pieces/white/pawn.png", 100); break;
+                        case KNIGHT: strncpy(piece, "assets/img/pieces/white/knight.png", 100); break;
+                        case BISHOP: strncpy(piece, "assets/img/pieces/white/bishop.png", 100); break;
+                        case ROOK: strncpy(piece, "assets/img/pieces/white/rook.png", 100); break;
+                        case QUEEN: strncpy(piece, "assets/img/pieces/white/queen.png", 100); break;
+                        case KING: strncpy(piece, "assets/img/pieces/white/king.png", 100); break;
+                        default: break;
                 }
-                
-                SDL_SetRenderDrawColor(state->renderer, 
-                                     state->board[i][j].color == WHITE ? 255 : 0, 
-                                     0, 
-                                     state->board[i][j].color == BLACK ? 255 : 0, 
-                                     255);
-                SDL_Rect piece_rect = {j * SQUARE_SIZE + 20, i * SQUARE_SIZE + 20, 
-                                     40, 40};
-                SDL_RenderDrawRect(state->renderer, &piece_rect);
+                }
+                else{
+                    switch (state->board[i][j].type) {
+                        case PAWN: strncpy(piece, "assets/img/pieces/black/pawn.png", 100); break;
+                        case KNIGHT: strncpy(piece, "assets/img/pieces/black/knight.png", 100); break;
+                        case BISHOP: strncpy(piece, "assets/img/pieces/black/bishop.png", 100); break;
+                        case ROOK: strncpy(piece, "assets/img/pieces/black/rook.png", 100); break;
+                        case QUEEN: strncpy(piece, "assets/img/pieces/black/queen.png", 100); break;
+                        case KING: strncpy(piece, "assets/img/pieces/black/king.png", 100); break;
+                        default: break;
+                    }
+                }
+                render_piece(state, piece, j, i);
             }
         }
     }

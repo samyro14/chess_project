@@ -1,5 +1,6 @@
 #define SDL_MAIN_HANDLED
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,7 +22,10 @@ int main() {
         printf("SDL initialization failed: %s\n", SDL_GetError());
         return 1;
     }
-    
+    if(IMG_Init(IMG_INIT_PNG) == 0) {
+        printf("SDL_image initialization failed: %s\n", IMG_GetError());
+        return 1;
+    }
     GameState state;
     init_game(&state);
     
@@ -55,6 +59,7 @@ int main() {
     
     SDL_DestroyRenderer(state.renderer);
     SDL_DestroyWindow(state.window);
+    IMG_Quit();
     SDL_Quit();
     
     return 0;
