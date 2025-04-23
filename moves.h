@@ -7,6 +7,9 @@
 bool is_valid_move(GameState*, int, int, int, int);
 void handle_move(GameState*, int, int, int, int);
 void move_pawn(GameState*, int, int, int, int);
-
-
+void move_knight(GameState*, int, int, int, int);
+void move_bishop(GameState*, int, int, int, int);
+void move_rook(GameState*, int, int, int, int);
+void move_queen(GameState*, int, int, int, int);
+void move_king(GameState*, int, int, int, int);
 #endif
