@@ -5,7 +5,7 @@
     2.3. board pieces=white and black - done
     2.4. board pieces position - done
 3.moves
-    3.1.pawn=> 
+    3.1.pawn=> partially done
         daca este in pozitia initiala poate sa mearga cu doua in fata - done, 23/04/2025
         in general merge cu o pozitie in fata - done, 23/04/2025
         daca este o piesa a adversarului pe i + 1, j +- 1 atunci poate sa ii ia piesa -done, 23/04/2025
