@@ -32,7 +32,7 @@ typedef struct {
     SDL_Renderer* renderer;
     Piece board[BOARD_SIZE][BOARD_SIZE];
     int is_white_turn;
-    int selected_x;
+    int selected_x; 
     int selected_y;
 } GameState;
 

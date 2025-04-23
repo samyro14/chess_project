@@ -4,13 +4,12 @@
     2.2. board color=white and black - done
     2.3. board pieces=white and black - done
     2.4. board pieces position - done
-3.moves - 22.04.2025
+3.moves
     3.1.pawn=> 
-        daca este in pozitia initiala poate sa mearga cu doua in fata
-        in general merge cu o pozitie in fata
-        daca este o piesa a adversarului pe i + 1, j +- 1 atunci poate sa ii ia piesa
-        toate aceste mutari se fac avand conditia ca nu va lasa regelein sah
-        mutarea se face in functie de culoarea piesei, alba sau neagra
+        daca este in pozitia initiala poate sa mearga cu doua in fata - done, 23/04/2025
+        in general merge cu o pozitie in fata - done, 23/04/2025
+        daca este o piesa a adversarului pe i + 1, j +- 1 atunci poate sa ii ia piesa -done, 23/04/2025
+        daca se afla la ultimul rand, se poate transforma in oricare alta piesa (cu exceptia regelui)
     3.2. bishop=nebun
         se poate muta pe diagonala, in fata sau in spate, dar nu poate sari peste alte piese
     3.3. knight=cavaler
@@ -22,6 +21,7 @@
     3.6. king=rege
         se poate muta pe orizontala, verticala sau diagonala, dar nu poate sari peste alte piese
         nu poate fi in sah, adica sa fie atacat de o piesa adversa
+    !!!toate aceste mutari se fac avand conditia ca nu va lasa regele in sah!!!!
 4.implementing the game
     4.1. game loop
         4.1.1. check if the game is over

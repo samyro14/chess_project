@@ -40,7 +40,6 @@ int main() {
             else if (event.type == SDL_MOUSEBUTTONDOWN) {
                 int x = event.button.x / SQUARE_SIZE;
                 int y = event.button.y / SQUARE_SIZE;
-                
                 if (state.selected_x == -1) {
                     if (state.board[y][x].type != EMPTY) {
                         state.selected_x = x;
@@ -52,6 +51,14 @@ int main() {
                     state.selected_y = -1;
                 }
             }
+            // else if(event.type == SDL_MOUSEMOTION){
+            //     int x = event.motion.x / SQUARE_SIZE;
+            //     int y = event.motion.y / SQUARE_SIZE;
+            //     if (state.selected_x != -1) {
+            //         state.selected_x = x;
+            //         state.selected_y = y;
+            //     }
+            // }
         }
         
         render_board(&state);
