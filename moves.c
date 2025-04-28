@@ -31,24 +31,24 @@ void handle_move(GameState* state, int from_x, int from_y, int to_x, int to_y) {
             move_pawn(state, from_x, from_y, to_x, to_y);
         }
          //knight
-         else if(state->board[from_y][from_x].type == KNIGHT){
-            move_knight(&state, from_x, from_y, to_x, to_y);
-         }
+        else if(state->board[from_y][from_x].type == KNIGHT){
+            move_knight(state, from_x, from_y, to_x, to_y);
+        }
         //bishop
         else if(state->board[from_y][from_x].type == BISHOP){
-            move_bishop(&state, from_x, from_y, to_x, to_y);
+            move_bishop(state, from_x, from_y, to_x, to_y);
         }
         //rook
         else if(state->board[from_y][from_x].type == ROOK){
-            move_rook(&state, from_x, from_y, to_x, to_y);
+            move_rook(state, from_x, from_y, to_x, to_y);
         }
         //queen
         else if(state->board[from_y][from_x].type == QUEEN){
-            move_queen(&state, from_x, from_y, to_x, to_y);
+            move_queen(state, from_x, from_y, to_x, to_y);
         }
         //king
         else if(state->board[from_y][from_x].type == KING){
-            move_king(&state, from_x, from_y, to_x, to_y);
+            move_king(state, from_x, from_y, to_x, to_y);
         }
     }
 }

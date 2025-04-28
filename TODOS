@@ -14,8 +14,8 @@
         se poate muta pe diagonala, in fata sau in spate, dar nu poate sari peste alte piese
     3.3. knight=cavaler
         se poate muta in forma de L, adica 2 pe o directie si 1 pe alta, dar nu poate sari peste alte piese
-    3.4. rook=turn
-        se poate muta pe orizontala sau verticala, dar nu poate sari peste alte piese
+    3.4. rook=turn - partially done, 24/04/2025, 00:18
+        se poate muta pe orizontala sau verticala, dar nu poate sari peste alte piese - done
     3.5. queen=regina
         se poate muta pe orizontala, verticala sau diagonala, dar nu poate sari peste alte piese
     3.6. king=rege
