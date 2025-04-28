@@ -12,4 +12,10 @@ void move_bishop(GameState*, int, int, int, int);
 void move_rook(GameState*, int, int, int, int);
 void move_queen(GameState*, int, int, int, int);
 void move_king(GameState*, int, int, int, int);
+
+//moves
+int is_valid_rook_move(GameState*, int, int, int, int); // 1 valid, -1 invalid
+int is_valid_bishop_move(GameState*, int, int, int, int); // 1 valid, -1 invalid
+int is_check(GameState*, int, int, int, int); // 1 valid, -1 invalid
+int is_checkmate(GameState*); // 1 valid, -1 invalid
 #endif
