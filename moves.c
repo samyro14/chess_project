@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
-// Verificare mutare validă (simplificată)
+// Verificare mutare validă
 bool is_valid_move(GameState* state, int from_x, int from_y, int to_x, int to_y) {
     if (from_x < 0 || from_x >= BOARD_SIZE || from_y < 0 || from_y >= BOARD_SIZE ||
         to_x < 0 || to_x >= BOARD_SIZE || to_y < 0 || to_y >= BOARD_SIZE) {
@@ -18,7 +18,7 @@ bool is_valid_move(GameState* state, int from_x, int from_y, int to_x, int to_y)
         return false;
     }
     
-    return true; // Adaugă reguli complete pentru alte piese
+    return true;
 }
 
 

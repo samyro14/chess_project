@@ -18,4 +18,5 @@ int is_valid_rook_move(GameState*, int, int, int, int); // 1 valid, -1 invalid
 int is_valid_bishop_move(GameState*, int, int, int, int); // 1 valid, -1 invalid
 int is_check(GameState*, int, int, int, int); // 1 valid, -1 invalid
 int is_checkmate(GameState*); // 1 valid, -1 invalid
+int draw(GameState*); // 1 valid, -1 invalid
 #endif

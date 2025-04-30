@@ -17,13 +17,6 @@ int is_empty(GameState* state, int x, int y){
 }
 
 int is_valid_pawn(GameState* state,int from_x, int from_y, int to_x, int to_y){
-
-    //daca muta in afara tablei, Verificare coordonate valide
-    if (from_x < 0 || from_x >= BOARD_SIZE || from_y < 0 || from_y >= BOARD_SIZE ||
-        to_x < 0 || to_x >= BOARD_SIZE || to_y < 0 || to_y >= BOARD_SIZE) {
-        return -1; // Mutare invalidă
-    }
-
     int direction = state->board[from_y][from_x].color == WHITE ? -1 : 1;
     // Verificare mutare verticală (în față)
     if (to_x == from_x && to_y == from_y + direction && state->board[to_y][to_x].type == EMPTY) {

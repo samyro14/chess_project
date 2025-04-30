@@ -7,7 +7,7 @@
 #define BOARD_SIZE 8
 
 int is_valid_king_move(GameState* state, int from_x, int from_y, int to_x, int to_y) {
-  
+    return 0;
 }
 int is_check(GameState* state, int from_x, int from_y, int to_x, int to_y) {
     // Check if the move puts the king in check

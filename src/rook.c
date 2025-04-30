@@ -7,11 +7,6 @@
 #define BOARD_SIZE 8
 
 int is_valid_rook_move(GameState* state, int from_x, int from_y, int to_x, int to_y) {
-    // verifying if the coordinates are within bounds
-    if (from_x < 0 || from_x >= BOARD_SIZE || from_y < 0 || from_y >= BOARD_SIZE ||
-        to_x < 0 || to_x >= BOARD_SIZE || to_y < 0 || to_y >= BOARD_SIZE) {
-        return -1; // invalid move
-    }
     if(state->board[from_y][from_x].type != ROOK && state->board[from_y][from_x].type != QUEEN) {
         return -1; // invalid piece type
     }
