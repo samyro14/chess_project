@@ -15,9 +15,17 @@ int is_valid_knight_move(GameState* state,int from_x, int from_y, int to_x, int 
 
 void move_knight(GameState* state, int from_x, int from_y, int to_x, int to_y){
     if(is_valid_knight_move(state,from_x, from_y, to_x, to_y) == 1){
+        Piece temp_piece = state->board[to_y][to_x];
         // Mutare piesă
         state->board[to_y][to_x] = state->board[from_y][from_x];
         state->board[from_y][from_x] = (Piece){EMPTY, WHITE};
+        if(is_check(state)){
+            // Mutare invalidă, revenire la starea anterioară
+            state->board[from_y][from_x] = state->board[to_y][to_x];
+            state->board[to_y][to_x] = temp_piece;
+            printf("Invalid move! King is in check!\n");
+            return;
+        }
         state->is_white_turn = !state->is_white_turn;
     }
     else{

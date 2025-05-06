@@ -16,7 +16,10 @@ void move_king(GameState*, int, int, int, int);
 //moves
 int is_valid_rook_move(GameState*, int, int, int, int); // 1 valid, -1 invalid
 int is_valid_bishop_move(GameState*, int, int, int, int); // 1 valid, -1 invalid
-int is_check(GameState*, int, int, int, int); // 1 valid, -1 invalid
-int is_checkmate(GameState*); // 1 valid, -1 invalid
+int is_valid_knight_move(GameState*, int, int, int, int); // 1 validd, -1 invalid
+int is_valid_pawn(GameState*, int, int, int, int); //  2 - valid capture from left, 3 - from right, -1 invalid move
+int is_valid_queen_move(GameState*, int, int, int, int); // 1 valid move, -1 invalid move
+int is_check(GameState*); // 1 - in check, 0 - not in check
+int is_checkmate(GameState*); // 1- in checkmate, 0 - not in checkmate
 int draw(GameState*); // 1 valid, -1 invalid
 #endif

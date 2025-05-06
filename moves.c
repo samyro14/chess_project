@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+
 // Verificare mutare validă
 bool is_valid_move(GameState* state, int from_x, int from_y, int to_x, int to_y) {
     if (from_x < 0 || from_x >= BOARD_SIZE || from_y < 0 || from_y >= BOARD_SIZE ||
@@ -17,7 +18,6 @@ bool is_valid_move(GameState* state, int from_x, int from_y, int to_x, int to_y)
         (from_piece.color == BLACK && state->is_white_turn)) {
         return false;
     }
-    
     return true;
 }
 
@@ -49,6 +49,20 @@ void handle_move(GameState* state, int from_x, int from_y, int to_x, int to_y) {
         //king
         else if(state->board[from_y][from_x].type == KING){
             move_king(state, from_x, from_y, to_x, to_y);
+        }
+        if(is_check(state)){
+            if(is_checkmate(state)){
+                printf("Checkmate!\n");
+                if(state->is_white_turn){
+                    printf("Black wins!\n");
+                }
+                else{
+                    printf("White wins!\n");
+                }
+            }
+            else{
+                printf("Check!\n");
+            }
         }
     }
 }

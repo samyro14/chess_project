@@ -37,6 +37,11 @@ int main() {
             if (event.type == SDL_QUIT) {
                 running = false;
             }
+            else if (event.type == SDL_KEYDOWN) {
+                if (event.key.keysym.sym == SDLK_ESCAPE) {
+                    running = false;
+                }
+            }
             else if (event.type == SDL_MOUSEBUTTONDOWN) {
                 int x = event.button.x / SQUARE_SIZE;
                 int y = event.button.y / SQUARE_SIZE;

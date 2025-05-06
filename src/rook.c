@@ -11,12 +11,11 @@ int is_valid_rook_move(GameState* state, int from_x, int from_y, int to_x, int t
         return -1; // invalid piece type
     }
 
-
     //  verifying if the move is either horizontal or vertical
     if (from_x != to_x && from_y != to_y) {
         return -1; // Mutare invalidă
     }
-
+    
     // path verification
     if (from_x == to_x) { // vertical move
         int step = (to_y > from_y) ? 1 : -1;
@@ -48,10 +47,17 @@ void move_rook(GameState* state, int from_x, int from_y, int to_x, int to_y) {
         printf("Invalid move for rook from (%d, %d) to (%d, %d)\n", from_x, from_y, to_x, to_y);
         return; // Mutare invalidă
     }
-
+    Piece temp_piece = state->board[to_y][to_x];
     // Mutare valida
     state->board[to_y][to_x] = state->board[from_y][from_x]; // Muta tura
     state->board[from_y][from_x] = (Piece){EMPTY, WHITE}; // Setează poziția inițială ca fiind goală
+    if(is_check(state)){
+        // Mutare invalidă, revenire la starea anterioară
+        state->board[from_y][from_x] = state->board[to_y][to_x];
+        state->board[to_y][to_x] = temp_piece;
+        printf("Invalid move! King is in check!\n");
+        return;
+    }
     state->is_white_turn = !state->is_white_turn; // Schimbă rândul jucătorului
     //printf("Rook moved from (%d, %d) to (%d, %d)\n", from_x, from_y, to_x, to_y);
 }

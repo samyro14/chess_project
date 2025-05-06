@@ -21,7 +21,7 @@
     3.6. king=rege - done
         se poate muta pe orizontala, verticala sau diagonala, dar nu poate sari peste alte piese
         nu poate fi in sah, adica sa fie atacat de o piesa adversa
-    !!!toate aceste mutari se fac avand conditia ca nu va lasa regele in sah!!!!
+    !!!toate aceste mutari se fac avand conditia ca nu va lasa regele in sah!!!! - done, 06.05.2025
 4.implementing the game
     4.1. game loop
         4.1.1. check if the game is over

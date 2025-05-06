@@ -55,33 +55,17 @@ void move_pawn(GameState* state, int from_x, int from_y, int to_x, int to_y){
     if(is_valid_pawn(state, from_x, from_y, to_x, to_y) == -1){
         return;
     }
-    if(is_valid_pawn(state, from_x, from_y, to_x, to_y) == 1){ // mutare normala
+    if(is_valid_pawn(state, from_x, from_y, to_x, to_y) > 0){
+        Piece temp_piece = state->board[to_y][to_x];
         state->board[to_y][to_x] = state->board[from_y][from_x];
         state->board[from_y][from_x] = (Piece){EMPTY, WHITE};
-        state->is_white_turn = !state->is_white_turn;
-        return;
-    }
-    else if(is_valid_pawn(state, from_x, from_y, to_x, to_y) == 2){ // capturare stanga
-        state->board[to_y][to_x] = state->board[from_y][from_x];
-        state->board[from_y][from_x] = (Piece){EMPTY, WHITE};
-        state->is_white_turn = !state->is_white_turn;
-        return;
-    }
-    else if(is_valid_pawn(state, from_x, from_y, to_x, to_y) == 3){ // capturare dreapta
-        state->board[to_y][to_x] = state->board[from_y][from_x];
-        state->board[from_y][from_x] = (Piece){EMPTY, WHITE};
-        state->is_white_turn = !state->is_white_turn;
-        return;
-    }
-    else if(is_valid_pawn(state, from_x, from_y, to_x, to_y) == 4){ // mutare dubla-white
-        state->board[to_y][to_x] = state->board[from_y][from_x];
-        state->board[from_y][from_x] = (Piece){EMPTY, WHITE};
-        state->is_white_turn = !state->is_white_turn;
-        return;
-    }
-    else if(is_valid_pawn(state, from_x, from_y, to_x, to_y) == 5){ // mutare dubla-black
-        state->board[to_y][to_x] = state->board[from_y][from_x];
-        state->board[from_y][from_x] = (Piece){EMPTY, BLACK};
+        if(is_check(state)){
+            // Mutare invalidă, revenire la starea anterioară
+            state->board[from_y][from_x] = state->board[to_y][to_x];
+            state->board[to_y][to_x] = temp_piece;
+            printf("Invalid move! King is in check!\n");
+            return;
+        }
         state->is_white_turn = !state->is_white_turn;
         return;
     }
