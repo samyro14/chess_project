@@ -25,42 +25,27 @@ bool is_valid_move(GameState* state, int from_x, int from_y, int to_x, int to_y)
 // Gestionare mutare
 void handle_move(GameState* state, int from_x, int from_y, int to_x, int to_y) {
     if (is_valid_move(state, from_x, from_y, to_x, to_y)) {
-        // in functie de piesa selectata, se va face mutarea
-        //pawn
-        if(state->board[from_y][from_x].type == PAWN){
+        // Perform the move
+        if (state->board[from_y][from_x].type == PAWN) {
             move_pawn(state, from_x, from_y, to_x, to_y);
-        }
-         //knight
-        else if(state->board[from_y][from_x].type == KNIGHT){
+        } else if (state->board[from_y][from_x].type == KNIGHT) {
             move_knight(state, from_x, from_y, to_x, to_y);
-        }
-        //bishop
-        else if(state->board[from_y][from_x].type == BISHOP){
+        } else if (state->board[from_y][from_x].type == BISHOP) {
             move_bishop(state, from_x, from_y, to_x, to_y);
-        }
-        //rook
-        else if(state->board[from_y][from_x].type == ROOK){
+        } else if (state->board[from_y][from_x].type == ROOK) {
             move_rook(state, from_x, from_y, to_x, to_y);
-        }
-        //queen
-        else if(state->board[from_y][from_x].type == QUEEN){
+        } else if (state->board[from_y][from_x].type == QUEEN) {
             move_queen(state, from_x, from_y, to_x, to_y);
-        }
-        //king
-        else if(state->board[from_y][from_x].type == KING){
+        } else if (state->board[from_y][from_x].type == KING) {
             move_king(state, from_x, from_y, to_x, to_y);
         }
-        if(is_check(state)){
-            if(is_checkmate(state)){
+
+        // Check for check or checkmate
+        if (is_check(state)) {
+            if (is_checkmate(state)) {
                 printf("Checkmate!\n");
-                if(state->is_white_turn){
-                    printf("Black wins!\n");
-                }
-                else{
-                    printf("White wins!\n");
-                }
-            }
-            else{
+                printf(state->is_white_turn ? "Black wins!\n" : "White wins!\n");
+            } else {
                 printf("Check!\n");
             }
         }

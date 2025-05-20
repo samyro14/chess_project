@@ -22,21 +22,5 @@
         se poate muta pe orizontala, verticala sau diagonala, dar nu poate sari peste alte piese
         nu poate fi in sah, adica sa fie atacat de o piesa adversa
     !!!toate aceste mutari se fac avand conditia ca nu va lasa regele in sah!!!! - done, 06.05.2025
-4.implementing the game
-    4.1. game loop
-        4.1.1. check if the game is over
-        4.1.2. check if the player is in check
-        4.1.3. check if the player is in checkmate
-        4.1.4. check if the player is in stalemate
-        4.1.5. check if the player is in draw
-    4.2. check if the player has won
-    4.3. check if the player has lost
-    4.4. check if the player has drawn
-    4.5. check if the player has resigned
-    4.6. check if the player has timed out
-    4.7. check if the player has disconnected
-    4.8. check if the player has left the game
-    4.9. check if the player has left the server
-
-4.socket programming
+4.socket programming-done
 5. fisier in care sa salvez rezultatele de la joc
