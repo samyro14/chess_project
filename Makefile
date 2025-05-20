@@ -1,7 +1,7 @@
 CC = gcc -Wall -Wextra -O2
 CFLAGS = -I"C:/msys64/mingw32/include" -Iinclude
 LDFLAGS = -L"C:/msys64/mingw32/lib" -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lws2_32
-SRC = main.c moves.c board.c socket_utils.c src/pawn.c src/knight.c src/bishop.c src/rook.c src/queen.c src/king.c
+SRC = src/main.c src/moves.c src/board.c src/socket_utils.c src/pawn.c src/knight.c src/bishop.c src/rook.c src/queen.c src/king.c
 OBJ= $(SRC:.c=.o)
 TARGET= sdl_game.exe
 git:
