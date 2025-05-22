@@ -92,7 +92,7 @@ int main(int argc, char* argv[]) {
     u_long mode = 1;
     ioctlsocket(socket_fd, FIONBIO, &mode); // Set socket to non-blocking mode
 
-    while (running) {
+    while (running && app_state == GAME) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
                 running = false;
