@@ -2,6 +2,7 @@
 //#define _WIN32_WINNT 0x0600
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,14 +16,19 @@
 #include "board.h"
 #include "moves.h"
 #include "socket_utils.h"
-#define WINDOW_WIDTH 900
+#define WINDOW_WIDTH 600
 #define WINDOW_HEIGHT 600
 #define BOARD_SIZE 8
 #define SQUARE_SIZE (WINDOW_HEIGHT / BOARD_SIZE)
 
 
 int main(int argc, char* argv[]) {
-
+    
+    FILE* results_file = fopen("results.txt", "a");
+    if (results_file == NULL) {
+        printf("Could not open results.txt for writing.\n");
+        return 1;
+    }
     // Socket setup
     SOCKET socket_fd = -1;
     bool is_server = false;
@@ -59,13 +65,33 @@ int main(int argc, char* argv[]) {
         printf("SDL_image initialization failed: %s\n", IMG_GetError());
         return 1;
     }
+    if (TTF_Init() == -1) {
+    printf("SDL_ttf initialization failed: %s\n", TTF_GetError());
+    return 1;
+    }
     GameState state;
-    init_game(&state);
-    
+    App_State app_state = MENU;
+    Button startBtn, exitBtn, nameBtn;
+    init_game(&state, &startBtn, &exitBtn, &nameBtn);
+    menu(&state, &socket_fd, is_server, &app_state, &startBtn, &exitBtn, &nameBtn);
+
+    // Set up the player names
+    if (is_server) {
+        char buffer[MAX_NAME_LENGTH] = "";
+        int received = recv(socket_fd, buffer, sizeof(buffer), 0);
+        if (received > 0) {
+            buffer[received] = '\0'; // Ensure null-terminated
+            strcpy(state.player.name_player_2, buffer);
+            state.player.is_ready_player_2 = true;
+        } else {
+            strcpy(state.player.name_player_2, "Guest");
+        }
+    }
     bool running = true;
     SDL_Event event;
     u_long mode = 1;
     ioctlsocket(socket_fd, FIONBIO, &mode); // Set socket to non-blocking mode
+
     while (running) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
@@ -84,7 +110,7 @@ int main(int argc, char* argv[]) {
                             state.selected_y = y;
                         }
                     } else {
-                        handle_move(&state, state.selected_x, state.selected_y, x, y);
+                        handle_move(&state, state.selected_x, state.selected_y, x, y, results_file, is_server);
                         // Send move to opponent
                         char move[5];
                         snprintf(move, sizeof(move), "%d%d%d%d", state.selected_x, state.selected_y, x, y);
@@ -104,17 +130,19 @@ int main(int argc, char* argv[]) {
                 int opp_from_y = opponent_move[1] - '0';
                 int opp_to_x = opponent_move[2] - '0';
                 int opp_to_y = opponent_move[3] - '0';
-                handle_move(&state, opp_from_x, opp_from_y, opp_to_x, opp_to_y);
+                handle_move(&state, opp_from_x, opp_from_y, opp_to_x, opp_to_y, results_file, is_server);
             }
         }
         
         render_board(&state);
         SDL_Delay(10);
     }
+    fclose(results_file);
     closesocket(socket_fd);
     cleanup_winsock();
     SDL_DestroyRenderer(state.renderer);
     SDL_DestroyWindow(state.window);
+    TTF_Quit();
     IMG_Quit();
     SDL_Quit();
     

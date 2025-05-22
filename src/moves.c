@@ -23,7 +23,7 @@ bool is_valid_move(GameState* state, int from_x, int from_y, int to_x, int to_y)
 
 
 // Gestionare mutare
-void handle_move(GameState* state, int from_x, int from_y, int to_x, int to_y) {
+void handle_move(GameState* state, int from_x, int from_y, int to_x, int to_y, FILE* results_file, bool is_server) {
     if (is_valid_move(state, from_x, from_y, to_x, to_y)) {
         // Perform the move
         if (state->board[from_y][from_x].type == PAWN) {
@@ -45,6 +45,13 @@ void handle_move(GameState* state, int from_x, int from_y, int to_x, int to_y) {
             if (is_checkmate(state)) {
                 printf("Checkmate!\n");
                 printf(state->is_white_turn ? "Black wins!\n" : "White wins!\n");
+                if(is_server){
+                    fprintf(results_file, "Player1: %s vs Player2: %s - Winner: %s\n",
+                    state->player.name_player_1,
+                    state->player.name_player_2,
+                    state->is_white_turn ? state->player.name_player_2 : state->player.name_player_1);
+                    fflush(results_file); // Ensure it's written immediately
+                }
             } else {
                 printf("Check!\n");
             }

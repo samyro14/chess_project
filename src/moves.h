@@ -4,8 +4,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <stdbool.h>
+#include <stdio.h>
 bool is_valid_move(GameState*, int, int, int, int);
-void handle_move(GameState*, int, int, int, int);
+void handle_move(GameState*, int, int, int, int, FILE*, bool);
 void move_pawn(GameState*, int, int, int, int);
 void move_knight(GameState*, int, int, int, int);
 void move_bishop(GameState*, int, int, int, int);
