@@ -36,3 +36,117 @@ This project is a chess game implementation designed for educational purposes. I
 
 ## License
 This project is licensed under the [Specify License, e.g., MIT License]. See the LICENSE file for details.
+
+
+
+# Chess Game Project Documentation
+
+---
+
+## Overview
+
+Acest proiect reprezintă o implementare completă a unui joc de șah cu interfață grafică și suport pentru multiplayer în rețea, realizat în limbajul C, folosind SDL2, SDL2_image și SDL2_ttf pentru partea grafică și Winsock2 pentru comunicația între server și client. Proiectul a fost dezvoltat ca parte a activității de laborator pentru Facultatea de Automatică și Calculatoare, UPT, specializarea CTI, semestrul 2.
+
+---
+
+## Funcționalități
+
+- Implementare completă a regulilor de șah (mutări valide, șah, mat, pat).
+- Interfață grafică modernă cu mouse și butoane pentru meniu.
+- Introducerea numelui jucătorului în meniu.
+- Multiplayer în rețea (un jucător server, unul client).
+- Salvarea rezultatelor partidelor în fișierul `results.txt`.
+- Fundal grafic pentru meniu și joc.
+- Rulare multiplatformă (Windows, testat cu MinGW).
+
+---
+
+## Structura Proiectului
+
+
+
+---
+
+## Cerințe
+
+- **Limbaj:** C
+- **Biblioteci:** SDL2, SDL2_image, SDL2_ttf, Winsock2 (Windows)
+- **Compilator:** MinGW (Windows) sau orice GCC compatibil cu SDL2
+- **IDE recomandat:** Visual Studio Code, Code::Blocks, CLion etc.
+
+---
+
+## Cum rulezi proiectul
+
+1. **Instalează dependențele:**  
+   - SDL2, SDL2_image, SDL2_ttf (prin MSYS2: `pacman -S mingw-w64-i686-SDL2 mingw-w64-i686-SDL2_image mingw-w64-i686-SDL2_ttf`)
+2. **Compilează proiectul:**  
+   - Folosește Makefile-ul:  
+     ```sh
+     mingw32-make build
+     ```
+3. **Pornește serverul:**  
+   - Într-un terminal:  
+     ```
+     [sdl_game.exe](http://_vscodecontentref_/2) server 12345
+     ```
+4. **Pornește clientul:**  
+   - În alt terminal sau pe alt calculator:  
+     ```
+     [sdl_game.exe](http://_vscodecontentref_/3) client 127.0.0.1 12345
+     ```
+   - Înlocuiește `127.0.0.1` cu IP-ul serverului dacă nu rulezi local.
+
+---
+
+## Utilizare
+
+- **Meniu:**  
+  - Introdu numele în caseta de text.
+  - Click pe "Play" pentru a începe jocul sau "Exit" pentru a ieși.
+- **Joc:**  
+  - Selectează piesa cu mouse-ul, apoi dă click pe pătratul destinație.
+  - Mutările sunt transmise automat adversarului.
+- **Rezultate:**  
+  - La finalul fiecărei partide, rezultatul este salvat în `results.txt`.
+
+---
+
+## Salvarea rezultatelor
+
+- Rezultatele sunt salvate în `results.txt` în modul append (`"a"`), astfel încât istoricul partidelor este păstrat.
+- Fiecare linie conține numele ambilor jucători și câștigătorul.
+
+---
+
+## Principiul de funcționare server-client
+
+- Serverul și clientul rulează ca procese separate și comunică prin socket TCP.
+- Sincronizarea mutărilor se face prin trimiterea și primirea mesajelor (mutărilor) prin rețea.
+- Fiecare aplicație procesează evenimentele SDL pentru a menține interfața responsivă.
+
+---
+
+## Extensii posibile
+
+- Implementare AI pentru single-player.
+- Adăugare sunete și animații.
+- Salvare și încărcare automată a partidelor.
+- Suport pentru chat între jucători.
+
+---
+
+## Contribuitori
+
+- [Numele tău]
+- [Alți membri ai echipei, dacă este cazul]
+
+---
+
+## Licență
+
+Acest proiect este licențiat sub [specifică licența, ex: MIT License]. Vezi fișierul LICENSE pentru detalii.
+
+---
+
+**Succes la șah!**
